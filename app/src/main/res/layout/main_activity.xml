@@ -32,6 +32,14 @@
                 app:contentInsetRight="0dp" />
         </com.google.android.material.appbar.AppBarLayout>
 
+        <TextView
+            android:id="@+id/main_hint_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/mainhint"
+            android:layout_margin="20sp"
+            android:src="@drawable/ic_launcher_nodpi" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

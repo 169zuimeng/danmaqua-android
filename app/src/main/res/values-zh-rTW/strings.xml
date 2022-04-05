@@ -372,5 +372,11 @@
     <string name="text_gravity_end">向右對齊</string>
     <string name="text_gravity_title">文本對齊方式</string>
     <string name="dark_mode_summary_format">%s（需要重啟以生效）</string>
+    <string name="mainhint">
+        <![CDATA[
+    特別感謝那些幫助我們翻譯 VTubers 發言的大佬們！沒有他們的付出，這個應用程式也將派不上用場。
+    ]]>
+        口号，好听的口号
+    </string>
 
 </resources>

@@ -6,9 +6,11 @@ import android.content.ContextWrapper
 import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Build
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.getSystemService
@@ -17,19 +19,21 @@ import androidx.core.text.buildSpannedString
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import androidx.view.screenHeight
+import androidx.view.screenWidth
 import com.drakeet.multitype.MultiTypeAdapter
+import kotlinx.TAG
+import kotlinx.android.synthetic.main.danmaku_fw_item_view.view.*
 import kotlinx.coroutines.*
 import moe.feng.danmaqua.Danmaqua.Settings
 import moe.feng.danmaqua.R
 import moe.feng.danmaqua.model.BiliChatDanmaku
+import moe.feng.danmaqua.model.flattenToString
+import moe.feng.danmaqua.ui.common.list.AutoScrollHelper
 import moe.feng.danmaqua.ui.floating.list.FWDanmakuItemViewDelegate
 import moe.feng.danmaqua.ui.floating.list.FWSystemMessageItemViewDelegate
-import moe.feng.danmaqua.ui.common.list.AutoScrollHelper
 import moe.feng.danmaqua.util.DanmakuFilter
-import kotlinx.TAG
-import androidx.view.screenHeight
-import androidx.view.screenWidth
-import moe.feng.danmaqua.model.flattenToString
+
 
 @SuppressLint("ClickableViewAccessibility")
 class FloatingWindowHolder(
@@ -93,6 +97,18 @@ class FloatingWindowHolder(
     val backgroundView: View = rootView.findViewById(R.id.floatingBackground)
     val contentView: View = rootView.findViewById(R.id.floatingContent)
     val normalContent: View = rootView.findViewById(R.id.normalContent)
+
+
+    var textframelayout : FrameLayout = rootView.findViewById<FrameLayout>(R.id.textframelayout)
+    var flag = false
+
+
+    /**
+     * @author 醉梦 2022/4/1
+     * 悬浮框状态
+     * */
+    var floatingWindowStatus = true;
+
     val expandedContent: View = rootView.findViewById(R.id.expandedContent)
     val captionView: TextView = rootView.findViewById(R.id.captionView)
     val expandButton: View = rootView.findViewById(R.id.expandButton)
@@ -108,6 +124,7 @@ class FloatingWindowHolder(
     val danmakuListLock: Any = object {}
 
     init {
+
         with (windowLayoutParams) {
             type = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -138,6 +155,10 @@ class FloatingWindowHolder(
         collapseButton.setOnTouchListener(windowTouchListener)
         closeButton.setOnTouchListener(windowTouchListener)
 
+
+
+
+
         expandButton.setOnClickListener {
             isExpanded = true
         }
@@ -154,6 +175,25 @@ class FloatingWindowHolder(
 
         loadSettings()
     }
+
+
+    /**
+     * @author 醉梦 2022/4/1
+     * 改变悬浮框状态，是否显示
+     * */
+    fun changeFWStatus(){
+        if (floatingWindowStatus) {
+            textframelayout.isVisible = true
+            floatingWindowStatus = false
+        }else{
+            textframelayout.isGone = true
+            floatingWindowStatus = true
+        }
+    }
+
+
+
+
 
     fun loadSettings() {
         textSize = Settings.floatingTextSize
@@ -203,6 +243,7 @@ class FloatingWindowHolder(
     }
 
     fun updateViewParamsToWindowManager() {
+
         if (!isAdded) {
             Log.e(TAG, "FloatingWindow hasn't been added to WindowManager.")
             return
@@ -213,6 +254,7 @@ class FloatingWindowHolder(
             e.printStackTrace()
         }
     }
+
 
     fun updateViewParamsByOrientation() {
         Log.d(TAG, "updateViewParamsByOrientation: isLandscaped=$isLandscaped")
@@ -328,6 +370,9 @@ class FloatingWindowHolder(
         private var dragStartJob: Job? = null
 
         private val calcLock: Any = object {}
+
+
+
 
         override fun onTouch(v: View, event: MotionEvent): Boolean {
             synchronized(calcLock) {

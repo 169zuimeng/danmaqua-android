@@ -394,4 +394,9 @@
     <string name="text_gravity_end">Align right</string>
     <string name="text_gravity_title">Text alignment</string>
     <string name="dark_mode_summary_format">%s (Requires restart to apply changes)</string>
+    <string name="mainhint"> <![CDATA[
+    Special thanks to people who helped us translate VTubers\' words! Without them, this app
+    would be useless.
+    ]]>
+        口号，好听的口号</string>
 </resources>

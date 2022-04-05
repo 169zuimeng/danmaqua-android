@@ -127,7 +127,7 @@ class VTubersGroupActivity : BaseActivity(), OnCatalogSingleItemClickListener {
         }
     }
 
-    private fun addSubscription(subscription: Subscription) {
+    fun addSubscription(subscription: Subscription) {
         lifecycleScope.launch {
             val dao = database.subscriptions()
             if (dao.findByUid(subscription.uid) == null) {

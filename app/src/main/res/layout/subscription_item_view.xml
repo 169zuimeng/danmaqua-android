@@ -33,8 +33,9 @@
                 android:id="@+id/avatarView"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:scaleType="centerCrop"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:visibility="visible"
                 app:avatarUrl="@{data.avatar}"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -42,10 +43,11 @@
                 android:id="@+id/avatarRing"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
+                android:layout_gravity="center"
                 android:importantForAccessibility="no"
                 android:src="@drawable/subscription_item_avatar_ring_background"
-                android:layout_gravity="center"
-                app:isVisible="@{data.selected}"/>
+                android:visibility="visible"
+                app:isVisible="@{data.selected}" />
 
         </FrameLayout>
 

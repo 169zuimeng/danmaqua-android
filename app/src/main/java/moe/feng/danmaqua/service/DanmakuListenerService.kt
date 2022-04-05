@@ -252,7 +252,7 @@ class DanmakuListenerService :
         Log.e(TAG, "onFailure", t)
     }
 
-    private inner class AidlInterfaceImpl : IDanmakuListenerService.Stub() {
+    inner class AidlInterfaceImpl : IDanmakuListenerService.Stub() {
 
         override fun connect(roomId: Long) {
             this@DanmakuListenerService.connect(roomId)
@@ -303,6 +303,10 @@ class DanmakuListenerService :
                 return
             }
             serviceCallbacks.removeAll { it.callback == callback }
+        }
+
+        fun changeFWStatus(){
+            floatingHolder?.changeFWStatus()
         }
 
     }

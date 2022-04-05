@@ -9,39 +9,95 @@
     android:focusable="true"
     android:clickable="true">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/drawerList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="16dp"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="3"
-            tools:listitem="@layout/subscription_item_view" />
-
         <View
             android:id="@+id/statusBarBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorBackgroundFloating"
             android:alpha="0.8"
-            tools:layout_height="32dp"/>
+            android:background="?attr/colorBackgroundFloating"
+            tools:layout_height="32dp" />
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/drawer_back_imageview"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_arrow_left" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <EditText
+                    android:id="@+id/roomid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/searchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_search" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/drawer_manage_imageview"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_sort_descending" />
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drawerList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="16dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/subscription_item_view" />
+
+        </FrameLayout>
+
+
 
     <LinearLayout
         android:id="@+id/bottomBar"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
+        android:background="?attr/colorBackgroundFloating"
+        android:orientation="vertical"
         android:paddingTop="8dp"
         android:paddingBottom="16dp"
-        android:background="?attr/colorBackgroundFloating"
+        android:visibility="visible"
         tools:ignore="RtlHardcoded">
 
         <moe.feng.danmaqua.ui.common.view.DrawerBottomItemButton
@@ -51,7 +107,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="8dp"
             android:icon="@drawable/ic_archive_24"
-            android:text="@string/danmaku_history_title"/>
+            android:text="@string/danmaku_history_title" />
 
         <moe.feng.danmaqua.ui.common.view.DrawerBottomItemButton
             android:id="@+id/settingsButton"
@@ -60,29 +116,31 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="8dp"
             android:icon="@drawable/ic_settings_applications_24"
-            android:text="@string/action_settings"/>
+            android:text="@string/action_settings" />
 
         <moe.feng.danmaqua.ui.common.view.DrawerBottomItemButton
             android:id="@+id/helpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
             android:icon="@drawable/ic_help_24"
-            android:text="@string/action_help"/>
+            android:text="@string/action_help" />
 
         <moe.feng.danmaqua.ui.common.view.DrawerBottomItemButton
             android:id="@+id/donateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
             android:icon="@drawable/ic_favorite_24"
-            android:text="@string/action_support_us"/>
+            android:text="@string/action_support_us" />
 
-        <View android:layout_width="match_parent" android:layout_height="16dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
 
         <TextView
             android:id="@+id/appVersionView"
@@ -91,7 +149,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginBottom="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-            tools:text="FloatingSubtitle · Version 1.0.0 (1)"/>
+            tools:text="FloatingSubtitle · Version 1.0.0 (1)" />
 
     </LinearLayout>
 

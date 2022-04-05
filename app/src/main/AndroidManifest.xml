@@ -33,6 +33,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.searchvtuber.SearchVtuberActivity"
+            android:theme="@style/Theme.Danmaqua.NoActionBar"
+            android:exported="false"/>
+
         <activity
             android:name=".ui.intro.IntroActivity"
             android:theme="@style/Theme.Danmaqua.NoActionBar"

@@ -3,6 +3,7 @@ package moe.feng.danmaqua.ui.subscription.dialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.*

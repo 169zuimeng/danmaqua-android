@@ -20,6 +20,11 @@ class MainServiceController(private val mainActivity: MainActivity) {
     private var service: IDanmakuListenerService? = null
     private var serviceConnection: ServiceConnection? = null
 
+    /**
+     * 改变悬浮窗状态
+     * */
+    private lateinit var danmakuListenerServiceBinder : DanmakuListenerService.AidlInterfaceImpl
+
     val isConnected: Boolean get() = service?.isConnected == true
     val roomId: Long? get() = service?.roomId
 
@@ -101,6 +106,7 @@ class MainServiceController(private val mainActivity: MainActivity) {
                     }
                     onConnected(it)
                 }
+                danmakuListenerServiceBinder = service as DanmakuListenerService.AidlInterfaceImpl
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
@@ -108,6 +114,7 @@ class MainServiceController(private val mainActivity: MainActivity) {
                 mainActivity.updateStatusViews()
             }
         }
+
         this.serviceConnection = connection
         try {
             if (!mainActivity.bindService(intent, connection, 0)) {
@@ -159,5 +166,10 @@ class MainServiceController(private val mainActivity: MainActivity) {
     suspend fun isFloatingShowing(): Boolean = withContext(Dispatchers.IO) {
         service?.isFloatingShowing == true
     }
+
+    fun changeFWStatus() {
+        danmakuListenerServiceBinder.changeFWStatus()
+    }
+
 
 }
